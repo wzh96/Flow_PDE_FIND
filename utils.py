@@ -15,7 +15,7 @@ params['hidden_activation'] = 'rational'
 params['occupancy_weight'] = 2
 params['flow_weight'] = 0.001
 params['speed_weight'] = 0.01
-params['k_t_weight'] = 1
+params['k_t_weight'] = 10
 params['sparsity_weight'] = 0.1
 
 params['second_order'] = False
