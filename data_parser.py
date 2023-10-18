@@ -15,8 +15,6 @@ def data_loader():
 
     return occupancy, flow, speed
 
-
-
 def data_loader_full():
     occupancy = pd.read_csv('Data_Clean/Occupancy_all_Long.csv')
     # Convert occupancy to percentage by *100
