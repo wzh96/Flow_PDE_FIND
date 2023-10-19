@@ -6,7 +6,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 params = {}
 params['device'] = device
 params['batch_size'] = 512
-params['learning_rate'] = 0.001
+params['learning_rate'] = 0.0002
 params['widths_OccupancyNet'] = [2,50,100,100,50,1]
 params['widths_FlowNet'] = [3,50,100,100,50,1]
 params['widths_SpeedNet'] = [3,50,100,100,50,1]
@@ -18,7 +18,7 @@ params['speed_weight'] = 0.01
 params['k_t_weight'] = 1
 params['sparsity_weight'] = 0.1
 
-params['second_order'] = False
+params['second_order'] = True
 params['poly_order'] = 2
 
 params['coeff_init'] = 'constant'
@@ -31,7 +31,7 @@ else:
 params['include_sine'] = False
 params['library_dim'] =library_size(params['dim'], params['poly_order'], params['include_sine'], True)
 
-params['burn_in_epoch'] = 2000
+params['burn_in_epoch'] = 1000
 params['num_epochs'] = 3000
 params['refinement_epochs'] = 1000
 

@@ -1,5 +1,7 @@
 import torch
 from scipy.special import binom
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 def build_collection_library(z, poly_order, include_sine = False):
     """
             Arguments:
@@ -15,7 +17,7 @@ def build_collection_library(z, poly_order, include_sine = False):
                  of state variables of the input, the polynomial order, and whether sines are included.
     """
     dim = z.size(1)
-    library = [torch.ones(z.size()[0])]
+    library = [torch.ones(z.size()[0]).to(device)]
     for i in range(dim):
         library.append(z[:,i])
     if poly_order > 1:
