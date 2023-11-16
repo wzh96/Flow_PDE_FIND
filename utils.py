@@ -14,8 +14,8 @@ params['hidden_activation'] = 'rational'
 
 params['occupancy_weight'] = 2
 params['flow_weight'] = 0.001
-params['speed_weight'] = 0.01
-params['k_t_weight'] = 1
+params['speed_weight'] = 0.1
+params['k_t_weight'] = 100
 params['sparsity_weight'] = 0.1
 
 params['second_order'] = True
@@ -31,13 +31,13 @@ else:
 params['include_sine'] = False
 params['library_dim'] =library_size(params['dim'], params['poly_order'], params['include_sine'], True)
 
-params['burn_in_epoch'] = 1000
-params['num_epochs'] = 3000
+params['burn_in_epoch'] = 2000
+params['num_epochs'] = 5000
 params['refinement_epochs'] = 1000
 
 params['sequential_thresholding'] = True
-params['threshold_frequency'] = 500
-params['coefficient_threshold'] = 0.001
+params['threshold_frequency'] = 300
+params['coefficient_threshold'] = 0.01
 params['coefficient_mask'] = torch.ones((params['library_dim'], 1)).to(device)
 
 
