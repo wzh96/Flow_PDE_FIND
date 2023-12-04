@@ -17,6 +17,9 @@ class Traffic_PDE_Learn(nn.Module):
     def Train(self, X, k, q, v):
         self.Network.train()
         print("###### burn-in model training in process ######")
+        loss_burnin_all = {}
+        loss_main_all = {}
+        loss_refine_all = {}
         num_epochs_burnin = self.params['burn_in_epoch']
         for epoch_burnin in range(num_epochs_burnin):
             start_time = time.time()
@@ -30,6 +33,7 @@ class Traffic_PDE_Learn(nn.Module):
             loss_flow = losses['flow']
             loss_speed = losses['speed']
             loss_k_t = losses['k_t']
+            loss_burnin_all[epoch_burnin] = losses
 
             duration = time.time() - start_time
             print(f'Epoch [{epoch_burnin + 1}/{num_epochs_burnin}], Loss: {loss_burnin.item()}, loss_occu: {loss_occu},'
@@ -49,6 +53,7 @@ class Traffic_PDE_Learn(nn.Module):
             loss_flow = losses['flow']
             loss_speed = losses['speed']
             loss_k_t = losses['k_t']
+            loss_main_all[epoch] = losses
 
             if self.params['sequential_thresholding'] and (epoch % self.params['threshold_frequency'] == 0) and (epoch > 0):
                 self.params['coefficient_mask'] = torch.abs(score['coeff']) > self.params['coefficient_threshold']
@@ -72,6 +77,7 @@ class Traffic_PDE_Learn(nn.Module):
             loss_flow = losses['flow']
             loss_speed = losses['speed']
             loss_k_t = losses['k_t']
+            loss_refine_all[epoch_refine] = losses
 
             duration = time.time() - start_time
             print(f'Epoch [{epoch_refine + 1}/{num_epochs_refine}], Loss: {loss_refine.item()}, loss_occu: {loss_occu},'
@@ -81,6 +87,17 @@ class Traffic_PDE_Learn(nn.Module):
             'model_state_dict': self.Network.state_dict(),
         }, 'Saved_Model/model_checkpoint.pt')
 
+        file_path = 'Losses/loss_burnin_all.pkl'
+        with open(file_path, 'wb') as pickle_file:
+            pickle.dump(loss_burnin_all, pickle_file)
+
+        file_path = 'Losses/loss_main_all.pkl'
+        with open(file_path, 'wb') as pickle_file:
+            pickle.dump(loss_main_all, pickle_file)
+
+        file_path = 'Losses/loss_refine_all.pkl'
+        with open(file_path, 'wb') as pickle_file:
+            pickle.dump(loss_refine_all, pickle_file)
 
     def Test(self, X):
         score = self.Network(X)

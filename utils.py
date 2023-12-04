@@ -13,7 +13,7 @@ params['widths_SpeedNet'] = [3,50,100,100,50,1]
 params['hidden_activation'] = 'rational'
 
 params['occupancy_weight'] = 1
-params['flow_weight'] = 0.001
+params['flow_weight'] = 0.005
 params['speed_weight'] = 0.1
 params['k_t_weight'] = 100
 params['sparsity_weight'] = 0.1
