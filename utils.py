@@ -6,7 +6,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 params = {}
 params['device'] = device
 params['batch_size'] = 512
-params['learning_rate'] = 0.001
+params['learning_rate'] = 0.0008
 params['widths_OccupancyNet'] = [2,50,100,100,50,1]
 params['widths_FlowNet'] = [3,50,100,100,50,1]
 params['widths_SpeedNet'] = [3,50,100,100,50,1]
@@ -36,8 +36,8 @@ params['num_epochs'] = 5000
 params['refinement_epochs'] = 2000
 
 params['sequential_thresholding'] = True
-params['threshold_frequency'] = 300
-params['coefficient_threshold'] = 0.001
+params['threshold_frequency'] = 500
+params['coefficient_threshold'] = 0.0005
 params['coefficient_mask'] = torch.ones((params['library_dim'], 1)).to(device)
 
 
