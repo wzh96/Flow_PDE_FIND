@@ -20,6 +20,7 @@ class Traffic_PDE_Learn(nn.Module):
         loss_burnin_all = {}
         loss_main_all = {}
         loss_refine_all = {}
+        # active terms = {}
         num_epochs_burnin = self.params['burn_in_epoch']
         for epoch_burnin in range(num_epochs_burnin):
             start_time = time.time()
