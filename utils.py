@@ -31,12 +31,12 @@ else:
 params['include_sine'] = False
 params['library_dim'] =library_size(params['dim'], params['poly_order'], params['include_sine'], True)
 
-params['burn_in_epoch'] = 1000
+params['burn_in_epoch'] = 2000
 params['num_epochs'] = 5000
 params['refinement_epochs'] = 3000
 
 params['sequential_thresholding'] = True
-params['threshold_frequency'] = 500
+params['threshold_frequency'] = 300
 params['coefficient_threshold'] = 0.0005
 params['coefficient_mask'] = torch.ones((params['library_dim'], 1)).to(device)
 
