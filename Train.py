@@ -13,7 +13,7 @@ class Traffic_PDE_Learn(nn.Module):
         self.params = params
         self.Network = fullnetwork(params).to(self.device)
         self.optimizer = torch.optim.Adam(self.Network.parameters(), lr = self.params['learning_rate'])
-
+        self.LRSchdular = torch.optim.lr_scheduler.StepLR(self.optimizer, step_size= 500, gamma=0.9)
     def Train(self, X, k, q, v):
         self.Network.train()
         print("###### burn-in model training in process ######")
@@ -29,6 +29,7 @@ class Traffic_PDE_Learn(nn.Module):
             loss_burnin, _, _, losses = data_loss(self.params, score, k, q, v)
             loss_burnin.backward()
             self.optimizer.step()
+            self.LRSchdular.step()
 
             loss_occu = losses['occupancy']
             loss_flow = losses['flow']
@@ -49,6 +50,7 @@ class Traffic_PDE_Learn(nn.Module):
             _, loss_all, _, losses = data_loss(self.params, score, k, q, v)
             loss_all.backward()
             self.optimizer.step()
+            self.LRSchdular.step()
 
             loss_occu = losses['occupancy']
             loss_flow = losses['flow']
@@ -73,6 +75,7 @@ class Traffic_PDE_Learn(nn.Module):
             self.optimizer.zero_grad()
             loss_refine.backward()
             self.optimizer.step()
+            self.LRSchdular.step()
 
             loss_occu = losses['occupancy']
             loss_flow = losses['flow']
