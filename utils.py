@@ -4,6 +4,8 @@ import torch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 params = {}
+params['initial_timestep'] = 72
+params['total_timestep'] = 145
 params['device'] = device
 params['batch_size'] = 512
 params['learning_rate'] = 0.001
@@ -31,13 +33,13 @@ else:
 params['include_sine'] = False
 params['library_dim'] =library_size(params['dim'], params['poly_order'], params['include_sine'], True)
 
-params['burn_in_epoch'] = 2000
+params['burn_in_epoch'] = 1000
 params['num_epochs'] = 3000
-params['refinement_epochs'] = 2000
+params['refinement_epochs'] = 1000
 
 params['sequential_thresholding'] = True
-params['threshold_frequency'] = 100
-params['coefficient_threshold'] = 0.0007
+params['threshold_frequency'] = 200
+params['coefficient_threshold'] = 0.0005
 params['coefficient_mask'] = torch.ones((params['library_dim'], 1)).to(device)
 
 
