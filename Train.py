@@ -113,15 +113,6 @@ class Traffic_PDE_Learn(nn.Module):
             pickle.dump(score, pickle_file)
 
 
-        # results = {
-        #     'coefficients': torch.mul(self.params['coefficient_mask'], score['coeff']),
-        #     'occupancy_recon': score['occupancy_recon'],
-        #     'flow_recon': score['flow_recon'],
-        #     'speed_recon': score['speed_recon'],
-        #     'k_t': score['k_t'],
-        #     'k_t_predict': score['k_t_predict']
-        # }
-
 
 
 
