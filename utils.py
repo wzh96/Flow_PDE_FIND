@@ -21,7 +21,7 @@ params['k_t_weight'] = 10
 params['sparsity_weight'] = 0.1
 
 params['second_order'] = True
-params['poly_order'] = 2
+params['poly_order'] = 1
 
 params['coeff_init'] = 'constant'
 
