@@ -15,8 +15,8 @@ params['widths_SpeedNet'] = [3,50,100,100,50,1]
 params['hidden_activation'] = 'rational'
 
 params['occupancy_weight'] = 2
-params['flow_weight'] = 0.01
-params['speed_weight'] = 0.2
+params['flow_weight'] = 0.04
+params['speed_weight'] = 0.6
 params['k_t_weight'] = 10
 params['sparsity_weight'] = 0.1
 
@@ -34,8 +34,8 @@ params['include_sine'] = False
 params['library_dim'] =library_size(params['dim'], params['poly_order'], params['include_sine'], True)
 
 params['burn_in_epoch'] = 1000
-params['num_epochs'] = 2000
-params['refinement_epochs'] = 1000
+params['num_epochs'] = 2500
+params['refinement_epochs'] = 1500
 
 params['sequential_thresholding'] = True
 params['threshold_frequency'] = 400
