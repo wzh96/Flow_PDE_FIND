@@ -169,6 +169,7 @@ class fullnetwork(nn.Module):
 
         z = torch.cat((Occupancy_recon, Flow_recon, Speed_recon, k_x, q_x, v_x), dim=1)
 
+        # if second order derivative is required
         if self.params['second_order']:
             _, k_xx = get_derivative_2var(input=X, output=k_x)
             _, q_phi_phi, _ = get_derivative_3var(input=X_withk, output=q_phi)
@@ -201,6 +202,11 @@ class fullnetwork(nn.Module):
             output['v_xx'] = v_xx
         output['k_t_predict'] = k_t_predict
         output['coeff'] = self.coeff.data
+
+        # Save the state dictionaries of the sub-networks
+        output['OccupancyNet_dict'] = self.OccupancyNet.state_dict()
+        output['FlowNet_dict'] = self.FlowNet.state_dict()
+        output['SpeedNet_dict'] = self.SpeedNet.state_dict()
 
         return output
 

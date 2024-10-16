@@ -23,4 +23,3 @@ def get_derivative_3var(input, output):
 
 
 
-

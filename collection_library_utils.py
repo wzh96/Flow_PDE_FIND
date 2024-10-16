@@ -1,8 +1,7 @@
 import torch
 from scipy.special import binom
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-def build_collection_library(z, poly_order, include_sine = False):
+def build_collection_library(z, poly_order, include_sine = False, device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')):
     """
             Arguments:
                 z - 2D pytorch tensor array of the snapshots on which to build the library. Shape is the number of time
