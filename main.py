@@ -26,3 +26,6 @@ if __name__ == "__main__":
                              torch.tensor(y_occu_all, dtype=torch.float32).unsqueeze(1).to(device)
 
     model.Test(X_occu_all)
+
+
+

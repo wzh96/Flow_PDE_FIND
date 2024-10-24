@@ -4,8 +4,8 @@ import torch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 params = {}
-params['initial_timestep'] = 180
-params['total_timestep'] = 360
+params['initial_timestep'] = 120
+params['total_timestep'] = 240
 params['device'] = device
 params['batch_size'] = 512
 params['learning_rate'] = 0.001
