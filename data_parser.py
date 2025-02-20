@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 from utils import params
 
 initial_timestep = params['initial_timestep']

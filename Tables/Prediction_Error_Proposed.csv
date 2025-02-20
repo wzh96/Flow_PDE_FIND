@@ -1,7 +1,7 @@
-Prediction Length,2-min prediction,4-min prediction,6-min prediction,8-min prediction,10-min prediction
-RMSE(%),1.14,1.35,1.67,2.06,2.47
-MAPE(%),6.23,9.47,13.18,17.1,21.14
-RMSE(%),0.28,0.52,0.79,1.08,1.37
-MAPE(%),2.43,4.67,7.11,9.63,12.2
-RMSE(%),0.06,0.13,0.19,0.27,0.36
-MAPE(%),0.73,1.48,2.28,3.08,3.9
+Prediction Length,3-min prediction,6-min prediction,9-min prediction,12-min prediction,15-min prediction
+RMSE(%),6.67,10.34,16.19,24.6,39.34
+MAPE(%),7.48,12.32,19.17,27.9,41.71
+RMSE(%),2.72,4.39,5.85,7.2,8.46
+MAPE(%),3.24,4.81,6.02,7.12,8.23
+RMSE(%),3.66,5.18,7.08,8.88,10.36
+MAPE(%),2.54,4.03,5.63,7.16,8.52
