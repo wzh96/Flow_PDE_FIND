@@ -34,7 +34,7 @@ if __name__ == "__main__":
     data = tensor_reshape(data)
 
     # Select the first 70% of the data for training
-    data_train = data[:int(data.size(0) * 0.7),:]
+    data_train = data[:int(data.size(0) * 0.6),:]
 
     dataset = Traffic_Flow_Data(data_train, window_size = params['window_size'])
     dataloader = DataLoader(dataset, batch_size=params['batch_size'], shuffle = True)
