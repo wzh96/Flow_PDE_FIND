@@ -20,7 +20,7 @@ params['speed_weight'] = 0.6
 params['k_t_weight'] = 5
 params['sparsity_weight'] = 0.1
 
-params['second_order'] = False
+params['second_order'] = True
 params['poly_order'] = 2
 
 params['coeff_init'] = 'constant'

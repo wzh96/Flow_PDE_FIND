@@ -1,5 +1,26 @@
 import torch
 import torch.nn as nn
+import numpy as np
+
+
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len=500):
+        super(PositionalEncoding, self).__init__()
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float32).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-np.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0)  # (1, max_len, d_model)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        """
+        Args:
+            x: Tensor, shape (batch_size, seq_len, d_model)
+        """
+        x = x + self.pe[:, :x.size(1)]
+        return x
 
 class Transformer(nn.Module):
     def __init__(self, input_size, d_model, num_heads, num_encoder_layers, dim_feedforward, dropout, output_size):
@@ -16,6 +37,7 @@ class Transformer(nn.Module):
         super(Transformer, self).__init__()
         # Project input to d_model dimension.
         self.input_linear = nn.Linear(input_size, d_model)
+        self.positional_encoding = PositionalEncoding(d_model=d_model)
 
         # Define a single encoder layer.
         encoder_layer = nn.TransformerEncoderLayer(d_model=d_model, nhead=num_heads,
@@ -38,7 +60,7 @@ class Transformer(nn.Module):
 
         # PyTorch's Transformer expects input in shape (sequence_length, batch_size, d_model)
         x = x.permute(1, 0, 2)
-
+        x = self.positional_encoding(x)
         # Pass through the Transformer encoder.
         x = self.transformer_encoder(x)
 

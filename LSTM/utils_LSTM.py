@@ -8,9 +8,9 @@ params = {}
 # LSTM params
 params['window_size'] = 10
 params['input_size'] = 17
-params['hidden_size'] = 100
-params['num_layers'] = 3
+params['hidden_size'] = 300
+params['num_layers'] = 4
 params['output_size'] = 17
-params['learning_rate'] = 0.0001
+params['learning_rate'] = 0.001
 params['batch_size'] = 32
-params['num_epochs'] = 2000
+params['num_epochs'] = 3500
